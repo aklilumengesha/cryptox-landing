@@ -4,3 +4,57 @@
 
 /* --- Google Font fallback if head link fails --- */
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap');
+
+/* --- CSS Custom Properties --- */
+:root {
+  /* Colors */
+  --bg-base:       #080810;
+  --bg-elevated:   #0f0f1a;
+  --bg-card:       rgba(255, 255, 255, 0.03);
+  --bg-card-hover: rgba(255, 255, 255, 0.06);
+
+  --accent:        #c4ff00;
+  --accent-dim:    #a8e000;
+  --accent-glow:   rgba(196, 255, 0, 0.35);
+  --accent-subtle: rgba(196, 255, 0, 0.08);
+
+  --purple:        #7c3aed;
+  --purple-glow:   rgba(124, 58, 237, 0.3);
+  --blue:          #3b82f6;
+  --blue-glow:     rgba(59, 130, 246, 0.25);
+
+  --text-primary:   #ffffff;
+  --text-secondary: #a0a0b0;
+  --text-muted:     #565670;
+  --text-dark:      #0a0a0a;
+
+  --border:        rgba(255, 255, 255, 0.08);
+  --border-accent: rgba(196, 255, 0, 0.25);
+  --border-purple: rgba(124, 58, 237, 0.25);
+
+  /* Typography */
+  --font-sans: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+
+  /* Spacing */
+  --section-py: 4.5rem;
+  --container-max: 1280px;
+  --container-px: 2rem;
+
+  /* Radii */
+  --radius-sm:  12px;
+  --radius-md:  20px;
+  --radius-lg:  28px;
+  --radius-xl:  40px;
+  --radius-full: 9999px;
+
+  /* Shadows */
+  --shadow-sm:  0 4px 16px rgba(0, 0, 0, 0.3);
+  --shadow-md:  0 8px 32px rgba(0, 0, 0, 0.4);
+  --shadow-lg:  0 20px 60px rgba(0, 0, 0, 0.5);
+  --shadow-accent: 0 8px 30px rgba(196, 255, 0, 0.35);
+  --shadow-purple: 0 8px 30px rgba(124, 58, 237, 0.35);
+
+  /* Transitions */
+  --transition: 0.3s ease;
+  --transition-slow: 0.5s ease;
+}
