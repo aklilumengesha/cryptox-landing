@@ -17,8 +17,9 @@
           <a href="#faq" :class="{ active: activeSection === 'faq' }">FAQ</a>
         </nav>
 
-        <!-- Mobile Toggle -->
+        <!-- CTA + Mobile Toggle -->
         <div class="header-actions">
+          <a href="#pricing" class="btn-primary">Get Started</a>
           <button
             class="hamburger"
             :class="{ open: mobileOpen }"
@@ -43,6 +44,7 @@
           <a href="#pricing" @click="mobileOpen = false">Pricing</a>
           <a href="#about" @click="mobileOpen = false">About</a>
           <a href="#faq" @click="mobileOpen = false">FAQ</a>
+          <a href="#pricing" class="btn-primary mobile-cta" @click="mobileOpen = false">Get Started</a>
         </nav>
       </div>
     </Transition>
@@ -213,6 +215,12 @@ onUnmounted(() => window.removeEventListener('scroll', onScroll))
 .mobile-nav a:hover {
   color: var(--text-primary);
   background: rgba(255, 255, 255, 0.05);
+}
+
+.mobile-cta {
+  margin-top: 0.75rem;
+  text-align: center;
+  justify-content: center;
 }
 
 /* Transitions */
