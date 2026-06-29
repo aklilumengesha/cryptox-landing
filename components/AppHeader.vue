@@ -1,5 +1,5 @@
 <template>
-  <header class="header">
+  <header class="header" :class="{ scrolled: isScrolled }">
     <div class="container">
       <div class="header-inner">
         <!-- Logo -->
@@ -10,11 +10,11 @@
 
         <!-- Desktop Nav -->
         <nav class="nav" aria-label="Main navigation">
-          <a href="#home">Home</a>
-          <a href="#features">Features</a>
-          <a href="#pricing">Pricing</a>
-          <a href="#about">About</a>
-          <a href="#faq">FAQ</a>
+          <a href="#home" :class="{ active: activeSection === 'home' }">Home</a>
+          <a href="#features" :class="{ active: activeSection === 'features' }">Features</a>
+          <a href="#pricing" :class="{ active: activeSection === 'pricing' }">Pricing</a>
+          <a href="#about" :class="{ active: activeSection === 'about' }">About</a>
+          <a href="#faq" :class="{ active: activeSection === 'faq' }">FAQ</a>
         </nav>
       </div>
     </div>
@@ -22,7 +22,27 @@
 </template>
 
 <script setup>
-// Base component setup
+import { ref, onMounted, onUnmounted } from 'vue'
+
+const isScrolled = ref(false)
+const activeSection = ref('home')
+
+function onScroll () {
+  isScrolled.value = window.scrollY > 20
+
+  // Active section tracking
+  const sections = ['home', 'features', 'pricing', 'about', 'faq']
+  for (const id of sections.slice().reverse()) {
+    const el = document.getElementById(id)
+    if (el && window.scrollY >= el.offsetTop - 120) {
+      activeSection.value = id
+      break
+    }
+  }
+}
+
+onMounted(() => window.addEventListener('scroll', onScroll, { passive: true }))
+onUnmounted(() => window.removeEventListener('scroll', onScroll))
 </script>
 
 <style scoped>
@@ -34,6 +54,10 @@
   z-index: 1000;
   padding: 1.25rem 0;
   transition: all 0.4s ease;
+}
+
+.header.scrolled {
+  padding: 0.875rem 0;
   background: rgba(8, 8, 16, 0.85);
   backdrop-filter: blur(24px);
   -webkit-backdrop-filter: blur(24px);
@@ -86,8 +110,13 @@
   text-decoration: none;
 }
 
-.nav a:hover {
+.nav a:hover,
+.nav a.active {
   color: var(--text-primary);
   background: rgba(255, 255, 255, 0.06);
+}
+
+.nav a.active {
+  color: var(--accent);
 }
 </style>
