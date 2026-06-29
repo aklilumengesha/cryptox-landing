@@ -16,8 +16,36 @@
           <a href="#about" :class="{ active: activeSection === 'about' }">About</a>
           <a href="#faq" :class="{ active: activeSection === 'faq' }">FAQ</a>
         </nav>
+
+        <!-- Mobile Toggle -->
+        <div class="header-actions">
+          <button
+            class="hamburger"
+            :class="{ open: mobileOpen }"
+            @click="mobileOpen = !mobileOpen"
+            aria-label="Toggle mobile menu"
+            :aria-expanded="mobileOpen"
+          >
+            <span></span>
+            <span></span>
+            <span></span>
+          </button>
+        </div>
       </div>
     </div>
+
+    <!-- Mobile Menu -->
+    <Transition name="slide-down">
+      <div v-if="mobileOpen" class="mobile-menu" role="dialog" aria-label="Mobile navigation">
+        <nav class="mobile-nav">
+          <a href="#home" @click="mobileOpen = false">Home</a>
+          <a href="#features" @click="mobileOpen = false">Features</a>
+          <a href="#pricing" @click="mobileOpen = false">Pricing</a>
+          <a href="#about" @click="mobileOpen = false">About</a>
+          <a href="#faq" @click="mobileOpen = false">FAQ</a>
+        </nav>
+      </div>
+    </Transition>
   </header>
 </template>
 
@@ -25,6 +53,7 @@
 import { ref, onMounted, onUnmounted } from 'vue'
 
 const isScrolled = ref(false)
+const mobileOpen = ref(false)
 const activeSection = ref('home')
 
 function onScroll () {
@@ -118,5 +147,89 @@ onUnmounted(() => window.removeEventListener('scroll', onScroll))
 
 .nav a.active {
   color: var(--accent);
+}
+
+/* Actions */
+.header-actions {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  flex-shrink: 0;
+}
+
+/* Hamburger */
+.hamburger {
+  display: none;
+  flex-direction: column;
+  gap: 5px;
+  background: none;
+  border: none;
+  padding: 6px;
+  cursor: pointer;
+}
+
+.hamburger span {
+  display: block;
+  width: 22px;
+  height: 2px;
+  background: var(--text-primary);
+  border-radius: 2px;
+  transition: all 0.3s ease;
+  transform-origin: center;
+}
+
+.hamburger.open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+.hamburger.open span:nth-child(2) { opacity: 0; transform: scaleX(0); }
+.hamburger.open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+
+/* Mobile Menu */
+.mobile-menu {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  right: 0;
+  background: rgba(8, 8, 16, 0.97);
+  backdrop-filter: blur(24px);
+  border-bottom: 1px solid var(--border);
+  padding: 1.5rem;
+}
+
+.mobile-nav {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.mobile-nav a {
+  color: var(--text-secondary);
+  font-size: 1rem;
+  font-weight: 500;
+  padding: 0.875rem 1rem;
+  border-radius: var(--radius-md);
+  transition: all var(--transition);
+  text-decoration: none;
+}
+
+.mobile-nav a:hover {
+  color: var(--text-primary);
+  background: rgba(255, 255, 255, 0.05);
+}
+
+/* Transitions */
+.slide-down-enter-active,
+.slide-down-leave-active {
+  transition: all 0.3s ease;
+}
+
+.slide-down-enter-from,
+.slide-down-leave-to {
+  opacity: 0;
+  transform: translateY(-10px);
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .nav { display: none; }
+  .hamburger { display: flex; }
 }
 </style>
