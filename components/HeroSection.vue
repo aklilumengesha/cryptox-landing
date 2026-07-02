@@ -2,7 +2,6 @@
   <section id="home" class="hero">
     <div class="orb orb-accent" style="width:700px;height:700px;top:-200px;right:-100px;opacity:0.7;"></div>
     <div class="orb orb-purple" style="width:500px;height:500px;bottom:-100px;left:-200px;opacity:0.5;"></div>
-
     <div class="container">
       <div class="hero-inner">
         <div class="hero-left">
@@ -11,56 +10,34 @@
             #1 Crypto Investing Platform
           </div>
           <h1 class="hero-title reveal reveal-delay-1">
-            Best crypto<br />
-            <span class="highlight">investing platform</span><br />
-            <span class="hero-sub-word">for your future.</span>
+            Best crypto<br /><span class="highlight">investing platform</span><br /><span class="hero-sub-word">for your future.</span>
           </h1>
-          <p class="hero-description reveal reveal-delay-2">
-            Polkadot unites and secures a growing ecosystem of specialized blockchains. Invest smarter, grow faster, and keep your digital assets safe.
-          </p>
+          <p class="hero-description reveal reveal-delay-2">Polkadot unites and secures a growing ecosystem of specialized blockchains. Invest smarter, grow faster, and keep your digital assets safe.</p>
         </div>
-
-        <!-- RIGHT — Phone Mockup -->
         <div class="hero-right reveal reveal-delay-2">
           <div class="phone-wrap">
-            <!-- Phone -->
+            <!-- Floating BTC card -->
+            <div class="float-card float-card-tl glass-card">
+              <span class="float-icon">₿</span>
+              <div><strong>BTC/USD</strong><span class="float-change positive">+3.24%</span></div>
+            </div>
+            <!-- Floating ETH card -->
+            <div class="float-card float-card-br glass-card">
+              <span class="float-icon eth">Ξ</span>
+              <div><strong>ETH/USD</strong><span class="float-change positive">+2.17%</span></div>
+            </div>
             <div class="phone" role="img" aria-label="Crypto app dashboard">
               <div class="phone-notch"></div>
               <div class="phone-inner">
-                <div class="phone-topbar">
-                  <span class="phone-time">9:41</span>
-                  <div class="phone-icons">
-                    <span>▲</span><span>●</span><span>▮▮</span>
-                  </div>
-                </div>
-                <div class="phone-balance">
-                  <p class="bal-label">Total Balance</p>
-                  <h2 class="bal-amount">$84,291.40</h2>
-                  <div class="bal-change">
-                    <span class="positive">▲ +$3,412.80</span>
-                    <span class="pct positive">(+4.2%)</span>
-                  </div>
-                </div>
+                <div class="phone-topbar"><span class="phone-time">9:41</span><div class="phone-icons"><span>▲</span><span>●</span><span>▮▮</span></div></div>
+                <div class="phone-balance"><p class="bal-label">Total Balance</p><h2 class="bal-amount">$84,291.40</h2><div class="bal-change"><span class="positive">▲ +$3,412.80</span><span class="pct positive">(+4.2%)</span></div></div>
                 <div class="phone-chart-bars">
-                  <div class="bar" style="height:40%;"></div>
-                  <div class="bar" style="height:65%;"></div>
-                  <div class="bar" style="height:50%;"></div>
-                  <div class="bar active" style="height:85%;"></div>
-                  <div class="bar" style="height:72%;"></div>
-                  <div class="bar" style="height:60%;"></div>
-                  <div class="bar" style="height:45%;"></div>
+                  <div class="bar" style="height:40%;"></div><div class="bar" style="height:65%;"></div><div class="bar" style="height:50%;"></div>
+                  <div class="bar active" style="height:85%;"></div><div class="bar" style="height:72%;"></div><div class="bar" style="height:60%;"></div><div class="bar" style="height:45%;"></div>
                 </div>
                 <div class="phone-assets">
-                  <div class="asset-row">
-                    <div class="asset-icon btc">₿</div>
-                    <div class="asset-info"><strong>Bitcoin</strong><span>0.842 BTC</span></div>
-                    <div class="asset-value"><strong>$42,108</strong><span class="positive">+2.4%</span></div>
-                  </div>
-                  <div class="asset-row">
-                    <div class="asset-icon eth-icon">Ξ</div>
-                    <div class="asset-info"><strong>Ethereum</strong><span>12.3 ETH</span></div>
-                    <div class="asset-value"><strong>$28,440</strong><span class="positive">+1.8%</span></div>
-                  </div>
+                  <div class="asset-row"><div class="asset-icon btc">₿</div><div class="asset-info"><strong>Bitcoin</strong><span>0.842 BTC</span></div><div class="asset-value"><strong>$42,108</strong><span class="positive">+2.4%</span></div></div>
+                  <div class="asset-row"><div class="asset-icon eth-icon">Ξ</div><div class="asset-info"><strong>Ethereum</strong><span>12.3 ETH</span></div><div class="asset-value"><strong>$28,440</strong><span class="positive">+1.8%</span></div></div>
                 </div>
                 <div class="phone-actions">
                   <button class="phone-action-btn"><span>↓</span>Receive</button>
@@ -96,6 +73,17 @@ onMounted(() => {
 .hero-description { color: var(--text-secondary); font-size: 1.05rem; line-height: 1.75; max-width: 480px; margin-bottom: 2.25rem; }
 .hero-right { display: flex; justify-content: center; align-items: center; }
 .phone-wrap { position: relative; width: 320px; }
+/* Float cards */
+.float-card { position: absolute; display: flex; align-items: center; gap: 0.75rem; padding: 0.875rem 1.25rem; border-radius: var(--radius-md); z-index: 10; animation: float 4s ease-in-out infinite; min-width: 160px; }
+.float-card-tl { top: 30px; left: -70px; animation-delay: 0s; }
+.float-card-br { bottom: 80px; right: -60px; animation-delay: 2s; }
+.float-icon { font-size: 1.4rem; color: var(--accent); }
+.float-icon.eth { color: #627eea; }
+.float-card strong { display: block; font-size: 0.85rem; font-weight: 700; }
+.float-change { font-size: 0.78rem; font-weight: 600; }
+.positive { color: #4ade80; }
+@keyframes float { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-10px); } }
+/* Phone */
 .phone { width: 280px; height: 560px; background: linear-gradient(160deg, #141424 0%, #0c0c1a 100%); border-radius: 40px; border: 2px solid rgba(255,255,255,0.12); position: relative; z-index: 2; margin: 0 auto; box-shadow: 0 60px 120px rgba(0,0,0,0.7), 0 0 80px rgba(196,255,0,0.12), inset 0 1px 0 rgba(255,255,255,0.1); transform: perspective(1200px) rotateY(-12deg) rotateX(4deg); transition: transform 0.6s ease; overflow: hidden; }
 .phone:hover { transform: perspective(1200px) rotateY(-6deg) rotateX(2deg) scale(1.02); }
 .phone-notch { position: absolute; top: 14px; left: 50%; transform: translateX(-50%); width: 90px; height: 6px; background: rgba(255,255,255,0.12); border-radius: 10px; z-index: 5; }
@@ -126,7 +114,6 @@ onMounted(() => {
 .phone-action-btn { flex: 1; padding: 0.6rem 0.25rem; border-radius: var(--radius-sm); border: 1px solid var(--border); background: rgba(255,255,255,0.04); color: var(--text-secondary); font-size: 0.72rem; font-weight: 600; display: flex; flex-direction: column; align-items: center; gap: 3px; cursor: pointer; transition: all var(--transition); }
 .phone-action-btn span { font-size: 1rem; }
 .phone-action-btn.primary { background: var(--accent); color: var(--text-dark); border: none; }
-.positive { color: #4ade80; }
-@media (max-width: 1024px) { .hero-inner { grid-template-columns: 1fr; } .hero-right { order: -1; } }
-@media (max-width: 480px) { .phone-wrap { width: 260px; } .phone { width: 240px; height: 480px; } }
+@media (max-width: 1024px) { .hero-inner { grid-template-columns: 1fr; } .hero-right { order: -1; } .float-card-tl { left: -20px; } .float-card-br { right: -20px; } }
+@media (max-width: 480px) { .float-card { display: none; } .phone-wrap { width: 260px; } .phone { width: 240px; height: 480px; } }
 </style>
