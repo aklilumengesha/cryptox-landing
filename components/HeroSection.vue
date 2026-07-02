@@ -16,12 +16,10 @@
         </div>
         <div class="hero-right reveal reveal-delay-2">
           <div class="phone-wrap">
-            <!-- Floating BTC card -->
             <div class="float-card float-card-tl glass-card">
               <span class="float-icon">₿</span>
               <div><strong>BTC/USD</strong><span class="float-change positive">+3.24%</span></div>
             </div>
-            <!-- Floating ETH card -->
             <div class="float-card float-card-br glass-card">
               <span class="float-icon eth">Ξ</span>
               <div><strong>ETH/USD</strong><span class="float-change positive">+2.17%</span></div>
@@ -46,6 +44,9 @@
                 </div>
               </div>
             </div>
+            <!-- Orbit Rings -->
+            <div class="orbit-ring ring-1"></div>
+            <div class="orbit-ring ring-2"></div>
           </div>
         </div>
       </div>
@@ -73,9 +74,8 @@ onMounted(() => {
 .hero-description { color: var(--text-secondary); font-size: 1.05rem; line-height: 1.75; max-width: 480px; margin-bottom: 2.25rem; }
 .hero-right { display: flex; justify-content: center; align-items: center; }
 .phone-wrap { position: relative; width: 320px; }
-/* Float cards */
 .float-card { position: absolute; display: flex; align-items: center; gap: 0.75rem; padding: 0.875rem 1.25rem; border-radius: var(--radius-md); z-index: 10; animation: float 4s ease-in-out infinite; min-width: 160px; }
-.float-card-tl { top: 30px; left: -70px; animation-delay: 0s; }
+.float-card-tl { top: 30px; left: -70px; }
 .float-card-br { bottom: 80px; right: -60px; animation-delay: 2s; }
 .float-icon { font-size: 1.4rem; color: var(--accent); }
 .float-icon.eth { color: #627eea; }
@@ -83,7 +83,6 @@ onMounted(() => {
 .float-change { font-size: 0.78rem; font-weight: 600; }
 .positive { color: #4ade80; }
 @keyframes float { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-10px); } }
-/* Phone */
 .phone { width: 280px; height: 560px; background: linear-gradient(160deg, #141424 0%, #0c0c1a 100%); border-radius: 40px; border: 2px solid rgba(255,255,255,0.12); position: relative; z-index: 2; margin: 0 auto; box-shadow: 0 60px 120px rgba(0,0,0,0.7), 0 0 80px rgba(196,255,0,0.12), inset 0 1px 0 rgba(255,255,255,0.1); transform: perspective(1200px) rotateY(-12deg) rotateX(4deg); transition: transform 0.6s ease; overflow: hidden; }
 .phone:hover { transform: perspective(1200px) rotateY(-6deg) rotateX(2deg) scale(1.02); }
 .phone-notch { position: absolute; top: 14px; left: 50%; transform: translateX(-50%); width: 90px; height: 6px; background: rgba(255,255,255,0.12); border-radius: 10px; z-index: 5; }
@@ -114,6 +113,12 @@ onMounted(() => {
 .phone-action-btn { flex: 1; padding: 0.6rem 0.25rem; border-radius: var(--radius-sm); border: 1px solid var(--border); background: rgba(255,255,255,0.04); color: var(--text-secondary); font-size: 0.72rem; font-weight: 600; display: flex; flex-direction: column; align-items: center; gap: 3px; cursor: pointer; transition: all var(--transition); }
 .phone-action-btn span { font-size: 1rem; }
 .phone-action-btn.primary { background: var(--accent); color: var(--text-dark); border: none; }
+/* Orbit Rings */
+.orbit-ring { position: absolute; border-radius: 50%; pointer-events: none; }
+.ring-1 { width: 420px; height: 420px; top: 50%; left: 50%; transform: translate(-50%, -50%); border: 1.5px solid rgba(196,255,0,0.18); animation: spin 25s linear infinite; }
+.ring-1::before { content: ''; position: absolute; width: 12px; height: 12px; background: var(--accent); border-radius: 50%; top: 0; left: 50%; transform: translate(-50%, -50%); box-shadow: 0 0 16px rgba(196,255,0,0.9); }
+.ring-2 { width: 540px; height: 540px; top: 50%; left: 50%; transform: translate(-50%, -50%); border: 1px solid rgba(124,58,237,0.12); animation: spin 40s linear infinite reverse; }
+@keyframes spin { from { transform: translate(-50%, -50%) rotate(0deg); } to { transform: translate(-50%, -50%) rotate(360deg); } }
 @media (max-width: 1024px) { .hero-inner { grid-template-columns: 1fr; } .hero-right { order: -1; } .float-card-tl { left: -20px; } .float-card-br { right: -20px; } }
-@media (max-width: 480px) { .float-card { display: none; } .phone-wrap { width: 260px; } .phone { width: 240px; height: 480px; } }
+@media (max-width: 480px) { .float-card { display: none; } .ring-2 { display: none; } .phone-wrap { width: 260px; } .phone { width: 240px; height: 480px; } .ring-1 { width: 300px; height: 300px; } }
 </style>
