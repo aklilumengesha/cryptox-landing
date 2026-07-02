@@ -13,6 +13,26 @@
             Best crypto<br /><span class="highlight">investing platform</span><br /><span class="hero-sub-word">for your future.</span>
           </h1>
           <p class="hero-description reveal reveal-delay-2">Polkadot unites and secures a growing ecosystem of specialized blockchains. Invest smarter, grow faster, and keep your digital assets safe.</p>
+          
+          <!-- User Stats -->
+          <div class="user-stats reveal reveal-delay-4">
+            <div class="user-avatars">
+              <img src="https://i.pravatar.cc/44?img=1" alt="User avatar" loading="lazy" />
+              <img src="https://i.pravatar.cc/44?img=2" alt="User avatar" loading="lazy" />
+              <img src="https://i.pravatar.cc/44?img=3" alt="User avatar" loading="lazy" />
+              <img src="https://i.pravatar.cc/44?img=4" alt="User avatar" loading="lazy" />
+              <img src="https://i.pravatar.cc/44?img=5" alt="User avatar" loading="lazy" />
+            </div>
+            <div class="user-text">
+              <strong>168K+</strong>
+              <span>Active Users Worldwide</span>
+            </div>
+            <div class="stat-divider"></div>
+            <div class="hero-rating">
+              <div class="stars">★ ★ ★ ★ ★</div>
+              <span>4.9/5 from 12K reviews</span>
+            </div>
+          </div>
         </div>
         <div class="hero-right reveal reveal-delay-2">
           <div class="phone-wrap">
@@ -50,6 +70,18 @@
           </div>
         </div>
       </div>
+      
+      <!-- Bottom Trust Bar -->
+      <div class="trust-bar reveal reveal-delay-5">
+        <span class="trust-label">Trusted by</span>
+        <div class="trust-logos">
+          <span>Coinbase</span>
+          <span>Binance</span>
+          <span>Kraken</span>
+          <span>Uniswap</span>
+          <span>Polkadot</span>
+        </div>
+      </div>
     </div>
   </section>
 </template>
@@ -72,6 +104,19 @@ onMounted(() => {
 .hero-title { font-size: clamp(2.5rem, 5vw, 4rem); font-weight: 900; line-height: 1.08; letter-spacing: -0.03em; margin-bottom: 1.5rem; }
 .hero-sub-word { color: var(--text-muted); }
 .hero-description { color: var(--text-secondary); font-size: 1.05rem; line-height: 1.75; max-width: 480px; margin-bottom: 2.25rem; }
+
+/* User Stats */
+.user-stats { display: flex; align-items: center; gap: 1.5rem; flex-wrap: wrap; }
+.user-avatars { display: flex; }
+.user-avatars img { width: 38px; height: 38px; border-radius: 50%; border: 3px solid var(--bg-base); margin-left: -10px; box-shadow: 0 4px 12px rgba(0,0,0,0.4); transition: transform var(--transition); }
+.user-avatars img:first-child { margin-left: 0; }
+.user-avatars img:hover { transform: translateY(-4px) scale(1.12); z-index: 10; }
+.user-text strong { display: block; font-size: 1.1rem; font-weight: 800; color: var(--text-primary); }
+.user-text span { font-size: 0.8rem; color: var(--text-muted); }
+.stat-divider { width: 1px; height: 36px; background: var(--border); }
+.hero-rating .stars { color: var(--accent); font-size: 0.85rem; margin-bottom: 2px; }
+.hero-rating span { font-size: 0.78rem; color: var(--text-muted); }
+
 .hero-right { display: flex; justify-content: center; align-items: center; }
 .phone-wrap { position: relative; width: 320px; }
 .float-card { position: absolute; display: flex; align-items: center; gap: 0.75rem; padding: 0.875rem 1.25rem; border-radius: var(--radius-md); z-index: 10; animation: float 4s ease-in-out infinite; min-width: 160px; }
@@ -113,12 +158,21 @@ onMounted(() => {
 .phone-action-btn { flex: 1; padding: 0.6rem 0.25rem; border-radius: var(--radius-sm); border: 1px solid var(--border); background: rgba(255,255,255,0.04); color: var(--text-secondary); font-size: 0.72rem; font-weight: 600; display: flex; flex-direction: column; align-items: center; gap: 3px; cursor: pointer; transition: all var(--transition); }
 .phone-action-btn span { font-size: 1rem; }
 .phone-action-btn.primary { background: var(--accent); color: var(--text-dark); border: none; }
+
 /* Orbit Rings */
 .orbit-ring { position: absolute; border-radius: 50%; pointer-events: none; }
 .ring-1 { width: 420px; height: 420px; top: 50%; left: 50%; transform: translate(-50%, -50%); border: 1.5px solid rgba(196,255,0,0.18); animation: spin 25s linear infinite; }
 .ring-1::before { content: ''; position: absolute; width: 12px; height: 12px; background: var(--accent); border-radius: 50%; top: 0; left: 50%; transform: translate(-50%, -50%); box-shadow: 0 0 16px rgba(196,255,0,0.9); }
 .ring-2 { width: 540px; height: 540px; top: 50%; left: 50%; transform: translate(-50%, -50%); border: 1px solid rgba(124,58,237,0.12); animation: spin 40s linear infinite reverse; }
 @keyframes spin { from { transform: translate(-50%, -50%) rotate(0deg); } to { transform: translate(-50%, -50%) rotate(360deg); } }
+
+/* Trust Bar */
+.trust-bar { display: flex; align-items: center; gap: 2rem; margin-top: 2.5rem; padding-top: 2rem; border-top: 1px solid var(--border); flex-wrap: wrap; }
+.trust-label { font-size: 0.8rem; color: var(--text-muted); text-transform: uppercase; letter-spacing: 0.1em; white-space: nowrap; }
+.trust-logos { display: flex; gap: 2.5rem; flex-wrap: wrap; }
+.trust-logos span { font-size: 0.9rem; font-weight: 700; color: rgba(255,255,255,0.2); letter-spacing: 0.05em; text-transform: uppercase; transition: color var(--transition); }
+.trust-logos span:hover { color: rgba(255,255,255,0.5); }
+
 @media (max-width: 1024px) { .hero-inner { grid-template-columns: 1fr; } .hero-right { order: -1; } .float-card-tl { left: -20px; } .float-card-br { right: -20px; } }
 @media (max-width: 480px) { .float-card { display: none; } .ring-2 { display: none; } .phone-wrap { width: 260px; } .phone { width: 240px; height: 480px; } .ring-1 { width: 300px; height: 300px; } }
 </style>
