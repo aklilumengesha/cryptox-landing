@@ -22,7 +22,7 @@
           v-for="(feature, i) in features"
           :key="feature.id"
           class="feature-card glass-card reveal"
-          :class="`reveal-delay-${i + 1}`"
+          :class="[`reveal-delay-${i + 1}`, { 'feature-card--accent': feature.accent }]"
         >
           <div class="feature-top">
             <div class="feature-icon" :class="feature.iconClass">
@@ -46,12 +46,12 @@
 import { onMounted } from 'vue'
 
 const features = [
-  { id: 1, icon: `<svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>`, iconClass: 'icon-purple', title: 'Bank-Grade Security', desc: 'Multi-layer encryption, 2FA, and cold storage protect every asset. Your funds are insured up to $250K.', link: '#' },
-  { id: 2, icon: `<svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/></svg>`, iconClass: 'icon-accent', title: 'Advanced Analytics', desc: 'Real-time charts, portfolio tracking, and AI-powered insights help you make smarter decisions every day.', link: '#' },
-  { id: 3, icon: `<svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>`, iconClass: 'icon-blue', title: 'Lightning Fast Trades', desc: 'Execute trades in milliseconds with our high-performance matching engine — zero downtime guaranteed.', link: '#' },
-  { id: 4, icon: `<svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>`, iconClass: 'icon-green', title: 'Multi-Chain Support', desc: 'Trade across Ethereum, Polkadot, Solana, and 50+ blockchains from one unified dashboard.', link: '#' },
-  { id: 5, icon: `<svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/><polyline points="3.27 6.96 12 12.01 20.73 6.96"/><line x1="12" y1="22.08" x2="12" y2="12"/></svg>`, iconClass: 'icon-purple', title: 'AI-Powered Insights', desc: 'Our AI scans 1M+ data points daily to surface personalized opportunities and risk alerts for your portfolio.', link: '#' },
-  { id: 6, icon: `<svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="1" y="4" width="22" height="16" rx="2" ry="2"/><line x1="1" y1="10" x2="23" y2="10"/></svg>`, iconClass: 'icon-blue', title: 'Instant Fiat On/Off Ramp', desc: 'Link your bank account and move funds in seconds. No fees for the first 3 months.', link: '#' }
+  { id: 1, icon: `<svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>`, iconClass: 'icon-purple', title: 'Bank-Grade Security', desc: 'Multi-layer encryption, 2FA, and cold storage protect every asset. Your funds are insured up to $250K.', link: '#', accent: false },
+  { id: 2, icon: `<svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/></svg>`, iconClass: 'icon-accent', title: 'Advanced Analytics', desc: 'Real-time charts, portfolio tracking, and AI-powered insights help you make smarter decisions every day.', link: '#', accent: true },
+  { id: 3, icon: `<svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>`, iconClass: 'icon-blue', title: 'Lightning Fast Trades', desc: 'Execute trades in milliseconds with our high-performance matching engine — zero downtime guaranteed.', link: '#', accent: false },
+  { id: 4, icon: `<svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>`, iconClass: 'icon-green', title: 'Multi-Chain Support', desc: 'Trade across Ethereum, Polkadot, Solana, and 50+ blockchains from one unified dashboard.', link: '#', accent: false },
+  { id: 5, icon: `<svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/><polyline points="3.27 6.96 12 12.01 20.73 6.96"/><line x1="12" y1="22.08" x2="12" y2="12"/></svg>`, iconClass: 'icon-purple', title: 'AI-Powered Insights', desc: 'Our AI scans 1M+ data points daily to surface personalized opportunities and risk alerts for your portfolio.', link: '#', accent: false },
+  { id: 6, icon: `<svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="1" y="4" width="22" height="16" rx="2" ry="2"/><line x1="1" y1="10" x2="23" y2="10"/></svg>`, iconClass: 'icon-blue', title: 'Instant Fiat On/Off Ramp', desc: 'Link your bank account and move funds in seconds. No fees for the first 3 months.', link: '#', accent: false }
 ]
 
 onMounted(() => {
@@ -68,7 +68,23 @@ onMounted(() => {
 .features { position: relative; overflow: hidden; }
 .features-header { max-width: 620px; margin-bottom: 4rem; }
 .features-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5rem; margin-bottom: 4rem; }
+
+/* Cards */
 .feature-card { padding: 2.25rem; position: relative; overflow: hidden; cursor: default; }
+
+.feature-card--accent {
+  background: linear-gradient(135deg, rgba(196,255,0,0.12) 0%, rgba(196,255,0,0.04) 100%);
+  border-color: var(--border-accent);
+  box-shadow: 0 8px 40px rgba(196,255,0,0.1);
+}
+
+.feature-card--accent::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 2px;
+  background: linear-gradient(90deg, transparent, var(--accent), transparent);
+}
 
 .feature-top { display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 1.25rem; }
 
