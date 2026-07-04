@@ -84,6 +84,16 @@
           <p class="section-subtitle" style="margin-top:1rem;">
             From real-time price tracking to automated portfolio rebalancing — our platform does the heavy lifting so you can focus on growing your wealth.
           </p>
+
+          <div class="check-list">
+            <div v-for="item in checkList" :key="item" class="check-item">
+              <div class="check-icon">
+                <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+              </div>
+              <span>{{ item }}</span>
+            </div>
+          </div>
+
           <div class="chart-cta">
             <a href="#pricing" class="btn-primary">Start for Free</a>
             <a href="#faq" class="btn-secondary">Ask a question</a>
@@ -99,6 +109,14 @@ import { ref, onMounted } from 'vue'
 
 const timeframes = ['1H', '24H', '7D', '1M', '1Y']
 const activeTime = ref('24H')
+
+const checkList = [
+  'Zero-fee trading on 200+ crypto pairs',
+  'Automated DCA strategies and alerts',
+  'Cold storage with multi-sig security',
+  'Tax reporting and profit/loss statements',
+  '24/7 live support from crypto experts'
+]
 
 onMounted(() => {
   const els = document.querySelectorAll('.reveal')
@@ -179,6 +197,34 @@ onMounted(() => {
 }
 
 .chart-content { display: flex; flex-direction: column; gap: 1.5rem; }
+
+.check-list {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.check-item {
+  display: flex;
+  align-items: center;
+  gap: 0.875rem;
+  font-size: 0.9rem;
+  color: var(--text-secondary);
+}
+
+.check-icon {
+  width: 22px; height: 22px;
+  border-radius: 50%;
+  background: rgba(196,255,0,0.15);
+  color: var(--accent);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.7rem;
+  font-weight: 800;
+  flex-shrink: 0;
+}
+
 .chart-cta { display: flex; gap: 1rem; flex-wrap: wrap; }
 @media (max-width: 1024px) { .chart-grid { grid-template-columns: 1fr; } .chart-metrics { grid-template-columns: repeat(2, 1fr); } }
 @media (max-width: 480px) { .chart-metrics { grid-template-columns: repeat(2, 1fr); } .time-pills { flex-wrap: wrap; } }
