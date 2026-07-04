@@ -98,6 +98,16 @@
             <a href="#pricing" class="btn-primary">Start for Free</a>
             <a href="#faq" class="btn-secondary">Ask a question</a>
           </div>
+
+          <!-- Mini trust card -->
+          <div class="trust-mini glass-card">
+            <div class="trust-rating">★★★★★</div>
+            <p>"The best crypto platform I've ever used. Security is top-notch."</p>
+            <div class="trust-author">
+              <img src="https://i.pravatar.cc/32?img=11" alt="Reviewer" />
+              <span>Marcus T. — Verified Investor</span>
+            </div>
+          </div>
         </div>
       </div>
     </div>
@@ -130,13 +140,55 @@ onMounted(() => {
 
 <style scoped>
 .chart-section { position: relative; overflow: hidden; }
-.chart-grid { display: grid; grid-template-columns: 1.1fr 1fr; gap: 3rem; align-items: center; }
-.chart-card { padding: 2rem; }
-.chart-card-header { display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 1.5rem; flex-wrap: wrap; gap: 1rem; }
-.chart-sub { font-size: 0.8rem; color: var(--text-muted); margin-bottom: 0.3rem; text-transform: uppercase; letter-spacing: 0.08em; }
-.chart-price { font-size: 2.25rem; font-weight: 800; letter-spacing: -0.03em; }
-.chart-price-usd { font-size: 1rem; font-weight: 500; color: var(--text-muted); }
-.rate-change { display: block; font-size: 0.85rem; font-weight: 600; margin-top: 0.25rem; }
+
+.chart-grid {
+  display: grid;
+  grid-template-columns: 1.1fr 1fr;
+  gap: 3rem;
+  align-items: center;
+}
+
+/* Chart Card */
+.chart-card {
+  padding: 2rem;
+}
+
+.chart-card-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 1.5rem;
+  flex-wrap: wrap;
+  gap: 1rem;
+}
+
+.chart-sub {
+  font-size: 0.8rem;
+  color: var(--text-muted);
+  margin-bottom: 0.3rem;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+}
+
+.chart-price {
+  font-size: 2.25rem;
+  font-weight: 800;
+  letter-spacing: -0.03em;
+}
+
+.chart-price-usd {
+  font-size: 1rem;
+  font-weight: 500;
+  color: var(--text-muted);
+}
+
+.rate-change {
+  display: block;
+  font-size: 0.85rem;
+  font-weight: 600;
+  margin-top: 0.25rem;
+}
+
 .positive { color: #4ade80; }
 
 .time-pills {
@@ -169,8 +221,20 @@ onMounted(() => {
   background: rgba(255,255,255,0.06);
 }
 
-.svg-chart-wrap { border-radius: var(--radius-md); overflow: hidden; background: rgba(196,255,0,0.02); border: 1px solid rgba(196,255,0,0.08); margin-bottom: 1.5rem; }
-.svg-chart { width: 100%; height: 140px; display: block; }
+/* SVG Chart */
+.svg-chart-wrap {
+  border-radius: var(--radius-md);
+  overflow: hidden;
+  background: rgba(196,255,0,0.02);
+  border: 1px solid rgba(196,255,0,0.08);
+  margin-bottom: 1.5rem;
+}
+
+.svg-chart {
+  width: 100%;
+  height: 140px;
+  display: block;
+}
 
 /* Metrics */
 .chart-metrics {
@@ -196,6 +260,7 @@ onMounted(() => {
   color: var(--text-primary);
 }
 
+/* Right Content */
 .chart-content { display: flex; flex-direction: column; gap: 1.5rem; }
 
 .check-list {
@@ -226,6 +291,47 @@ onMounted(() => {
 }
 
 .chart-cta { display: flex; gap: 1rem; flex-wrap: wrap; }
-@media (max-width: 1024px) { .chart-grid { grid-template-columns: 1fr; } .chart-metrics { grid-template-columns: repeat(2, 1fr); } }
-@media (max-width: 480px) { .chart-metrics { grid-template-columns: repeat(2, 1fr); } .time-pills { flex-wrap: wrap; } }
+
+/* Trust Mini */
+.trust-mini {
+  padding: 1.25rem 1.5rem;
+}
+
+.trust-rating { color: var(--accent); font-size: 0.85rem; margin-bottom: 0.5rem; }
+
+.trust-mini p {
+  font-size: 0.9rem;
+  color: var(--text-secondary);
+  font-style: italic;
+  margin-bottom: 0.875rem;
+  line-height: 1.5;
+}
+
+.trust-author {
+  display: flex;
+  align-items: center;
+  gap: 0.625rem;
+}
+
+.trust-author img {
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+}
+
+.trust-author span {
+  font-size: 0.78rem;
+  color: var(--text-muted);
+}
+
+/* Responsive */
+@media (max-width: 1024px) {
+  .chart-grid { grid-template-columns: 1fr; }
+  .chart-metrics { grid-template-columns: repeat(2, 1fr); }
+}
+
+@media (max-width: 480px) {
+  .chart-metrics { grid-template-columns: repeat(2, 1fr); }
+  .time-pills { flex-wrap: wrap; }
+}
 </style>
