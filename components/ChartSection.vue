@@ -12,6 +12,14 @@
               <h3 class="chart-price">$64,528 <span class="chart-price-usd">USD</span></h3>
               <span class="rate-change positive">▲ +$2,841.12 (4.6%) 24h</span>
             </div>
+            <div class="time-pills">
+              <button
+                v-for="t in timeframes"
+                :key="t"
+                :class="['time-pill', { active: activeTime === t }]"
+                @click="activeTime = t"
+              >{{ t }}</button>
+            </div>
           </div>
 
           <!-- SVG Chart -->
@@ -67,7 +75,10 @@
 </template>
 
 <script setup>
-import { onMounted } from 'vue'
+import { ref, onMounted } from 'vue'
+
+const timeframes = ['1H', '24H', '7D', '1M', '1Y']
+const activeTime = ref('24H')
 
 onMounted(() => {
   const els = document.querySelectorAll('.reveal')
@@ -89,9 +100,41 @@ onMounted(() => {
 .chart-price-usd { font-size: 1rem; font-weight: 500; color: var(--text-muted); }
 .rate-change { display: block; font-size: 0.85rem; font-weight: 600; margin-top: 0.25rem; }
 .positive { color: #4ade80; }
+
+.time-pills {
+  display: flex;
+  gap: 0.25rem;
+  background: rgba(255,255,255,0.04);
+  border-radius: var(--radius-full);
+  padding: 3px;
+}
+
+.time-pill {
+  border: none;
+  background: none;
+  color: var(--text-muted);
+  font-size: 0.75rem;
+  font-weight: 600;
+  padding: 0.35rem 0.75rem;
+  border-radius: var(--radius-full);
+  cursor: pointer;
+  transition: all var(--transition);
+}
+
+.time-pill.active {
+  background: var(--accent);
+  color: var(--text-dark);
+}
+
+.time-pill:hover:not(.active) {
+  color: var(--text-primary);
+  background: rgba(255,255,255,0.06);
+}
+
 .svg-chart-wrap { border-radius: var(--radius-md); overflow: hidden; background: rgba(196,255,0,0.02); border: 1px solid rgba(196,255,0,0.08); margin-bottom: 1.5rem; }
 .svg-chart { width: 100%; height: 140px; display: block; }
 .chart-content { display: flex; flex-direction: column; gap: 1.5rem; }
 .chart-cta { display: flex; gap: 1rem; flex-wrap: wrap; }
 @media (max-width: 1024px) { .chart-grid { grid-template-columns: 1fr; } }
+@media (max-width: 480px) { .time-pills { flex-wrap: wrap; } }
 </style>
