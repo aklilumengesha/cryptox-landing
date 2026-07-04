@@ -49,6 +49,26 @@
               <circle cx="400" cy="20" r="6" fill="var(--accent)" stroke="rgba(8,8,16,1)" stroke-width="2"/>
             </svg>
           </div>
+
+          <!-- Bottom row -->
+          <div class="chart-metrics">
+            <div class="metric">
+              <span class="metric-label">24h High</span>
+              <strong class="metric-val">$65,412</strong>
+            </div>
+            <div class="metric">
+              <span class="metric-label">24h Low</span>
+              <strong class="metric-val">$61,890</strong>
+            </div>
+            <div class="metric">
+              <span class="metric-label">Volume</span>
+              <strong class="metric-val">$28.4B</strong>
+            </div>
+            <div class="metric">
+              <span class="metric-label">Market Cap</span>
+              <strong class="metric-val">$1.24T</strong>
+            </div>
+          </div>
         </div>
 
         <!-- Right: Content -->
@@ -133,8 +153,33 @@ onMounted(() => {
 
 .svg-chart-wrap { border-radius: var(--radius-md); overflow: hidden; background: rgba(196,255,0,0.02); border: 1px solid rgba(196,255,0,0.08); margin-bottom: 1.5rem; }
 .svg-chart { width: 100%; height: 140px; display: block; }
+
+/* Metrics */
+.chart-metrics {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1rem;
+  padding-top: 1rem;
+  border-top: 1px solid var(--border);
+}
+
+.metric-label {
+  display: block;
+  font-size: 0.72rem;
+  color: var(--text-muted);
+  margin-bottom: 0.25rem;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+}
+
+.metric-val {
+  font-size: 0.95rem;
+  font-weight: 700;
+  color: var(--text-primary);
+}
+
 .chart-content { display: flex; flex-direction: column; gap: 1.5rem; }
 .chart-cta { display: flex; gap: 1rem; flex-wrap: wrap; }
-@media (max-width: 1024px) { .chart-grid { grid-template-columns: 1fr; } }
-@media (max-width: 480px) { .time-pills { flex-wrap: wrap; } }
+@media (max-width: 1024px) { .chart-grid { grid-template-columns: 1fr; } .chart-metrics { grid-template-columns: repeat(2, 1fr); } }
+@media (max-width: 480px) { .chart-metrics { grid-template-columns: repeat(2, 1fr); } .time-pills { flex-wrap: wrap; } }
 </style>
