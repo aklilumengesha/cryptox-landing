@@ -71,6 +71,12 @@
           </a>
         </div>
       </div>
+
+      <!-- Guarantee -->
+      <div class="guarantee reveal">
+        <span class="guarantee-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg></span>
+        <p>30-day money-back guarantee. No questions asked. Cancel anytime.</p>
+      </div>
     </div>
   </section>
 </template>
@@ -323,6 +329,23 @@ onMounted(() => {
   width: 100%;
   padding: 0.875rem;
 }
+
+/* Guarantee */
+.guarantee {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.75rem;
+  padding: 1.25rem 2rem;
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-full);
+  max-width: 480px;
+  margin: 0 auto;
+}
+
+.guarantee-icon { font-size: 1.25rem; }
+.guarantee p { font-size: 0.88rem; color: var(--text-secondary); }
 
 @media (max-width: 1024px) {
   .pricing-grid { grid-template-columns: 1fr; max-width: 420px; margin: 0 auto 3rem; }
