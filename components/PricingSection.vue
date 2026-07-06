@@ -15,6 +15,18 @@
         <p class="section-subtitle reveal reveal-delay-2">
           Start free, upgrade when you're ready. No hidden fees, ever.
         </p>
+
+        <!-- Billing Toggle -->
+        <div class="billing-toggle reveal reveal-delay-3">
+          <span :class="{ 'toggle-active': !annual }">Monthly</span>
+          <button class="toggle-btn" @click="annual = !annual" :aria-pressed="annual" aria-label="Toggle annual billing">
+            <div class="toggle-knob" :class="{ 'knob-right': annual }"></div>
+          </button>
+          <span :class="{ 'toggle-active': annual }">
+            Annual
+            <span class="save-badge">Save 20%</span>
+          </span>
+        </div>
       </div>
 
       <!-- Pricing Cards -->
@@ -33,8 +45,12 @@
 
           <div class="plan-price">
             <span class="price-currency">$</span>
-            <span class="price-amount">{{ plan.monthlyPrice }}</span>
+            <span class="price-amount">{{ annual ? plan.annualPrice : plan.monthlyPrice }}</span>
             <span class="price-period">/ mo</span>
+          </div>
+
+          <div v-if="annual && plan.monthlyPrice !== '0'" class="annual-note">
+            Billed ${{ parseInt(plan.annualPrice) * 12 }}/year
           </div>
 
           <ul class="plan-features">
@@ -53,7 +69,9 @@
 </template>
 
 <script setup>
-import { onMounted } from 'vue'
+import { ref, onMounted } from 'vue'
+
+const annual = ref(true)
 
 const plans = [
   {
@@ -62,6 +80,7 @@ const plans = [
     name: 'Starter',
     desc: 'Perfect for crypto beginners.',
     monthlyPrice: '0',
+    annualPrice: '0',
     cta: { label: 'Start Free', link: '#' },
     features: [
       { text: 'Up to 3 crypto wallets' },
@@ -76,6 +95,7 @@ const plans = [
     name: 'Pro',
     desc: 'For active traders and investors.',
     monthlyPrice: '29',
+    annualPrice: '23',
     cta: { label: 'Get Pro', link: '#' },
     features: [
       { text: 'Unlimited wallets' },
@@ -92,6 +112,7 @@ const plans = [
     name: 'Enterprise',
     desc: 'For funds, DAOs, and teams.',
     monthlyPrice: '99',
+    annualPrice: '79',
     cta: { label: 'Contact Sales', link: '#' },
     features: [
       { text: 'Everything in Pro' },
@@ -118,6 +139,58 @@ onMounted(() => {
 <style scoped>
 .pricing { position: relative; overflow: hidden; }
 .pricing-header { text-align: center; max-width: 640px; margin: 0 auto 4rem; display: flex; flex-direction: column; align-items: center; gap: 1rem; }
+
+/* Billing Toggle */
+.billing-toggle {
+  display: flex;
+  align-items: center;
+  gap: 0.875rem;
+  font-size: 0.9rem;
+  color: var(--text-muted);
+  margin-top: 0.5rem;
+}
+
+.toggle-active { color: var(--text-primary); font-weight: 600; }
+
+.toggle-btn {
+  width: 48px;
+  height: 26px;
+  border-radius: 99px;
+  background: var(--border);
+  border: none;
+  cursor: pointer;
+  position: relative;
+  transition: background var(--transition);
+}
+
+.toggle-btn:has(.knob-right) {
+  background: var(--accent);
+}
+
+.toggle-knob {
+  position: absolute;
+  top: 3px;
+  left: 3px;
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  background: white;
+  transition: transform var(--transition);
+}
+
+.knob-right { transform: translateX(22px); }
+
+.save-badge {
+  display: inline-block;
+  background: rgba(196,255,0,0.15);
+  color: var(--accent);
+  border-radius: var(--radius-full);
+  font-size: 0.7rem;
+  font-weight: 700;
+  padding: 2px 8px;
+  margin-left: 0.35rem;
+}
+
 .pricing-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5rem; margin-bottom: 3rem; align-items: start; }
 .price-card { padding: 2.25rem; position: relative; }
 .plan-icon { font-size: 2rem; margin-bottom: 1rem; }
@@ -128,6 +201,13 @@ onMounted(() => {
 .price-currency { font-size: 1.25rem; font-weight: 700; color: var(--text-secondary); margin-bottom: 0.4rem; }
 .price-amount { font-size: 3rem; font-weight: 900; letter-spacing: -0.04em; line-height: 1; }
 .price-period { font-size: 0.85rem; color: var(--text-muted); margin-bottom: 0.5rem; }
+
+.annual-note {
+  font-size: 0.78rem;
+  color: var(--text-muted);
+  margin-bottom: 1.75rem;
+}
+
 .plan-features { list-style: none; display: flex; flex-direction: column; gap: 0.75rem; margin: 1.75rem 0; }
 .plan-features li { font-size: 0.88rem; color: var(--text-secondary); }
 .plan-cta { display: block; text-align: center; width: 100%; padding: 0.875rem; }
