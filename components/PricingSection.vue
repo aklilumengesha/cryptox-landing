@@ -57,7 +57,11 @@
           </div>
 
           <ul class="plan-features">
-            <li v-for="feat in plan.features" :key="feat.text">
+            <li v-for="feat in plan.features" :key="feat.text" :class="{ disabled: !feat.included }">
+              <span class="feat-icon">
+                <svg v-if="feat.included" width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+                <svg v-else width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+              </span>
               {{ feat.text }}
             </li>
           </ul>
@@ -87,10 +91,13 @@ const plans = [
     featured: false,
     cta: { label: 'Start Free', link: '#' },
     features: [
-      { text: 'Up to 3 crypto wallets' },
-      { text: 'Basic portfolio tracking' },
-      { text: '10 trades/month' },
-      { text: 'Email support' }
+      { text: 'Up to 3 crypto wallets', included: true },
+      { text: 'Basic portfolio tracking', included: true },
+      { text: '10 trades/month', included: true },
+      { text: 'Email support', included: true },
+      { text: 'Advanced analytics', included: false },
+      { text: 'AI-powered insights', included: false },
+      { text: 'Priority support', included: false }
     ]
   },
   {
@@ -103,12 +110,13 @@ const plans = [
     featured: true,
     cta: { label: 'Get Pro', link: '#' },
     features: [
-      { text: 'Unlimited wallets' },
-      { text: 'Advanced analytics' },
-      { text: 'Unlimited trades' },
-      { text: 'AI-powered insights' },
-      { text: 'Automated DCA strategies' },
-      { text: 'Priority 24/7 support' }
+      { text: 'Unlimited wallets', included: true },
+      { text: 'Advanced analytics', included: true },
+      { text: 'Unlimited trades', included: true },
+      { text: 'AI-powered insights', included: true },
+      { text: 'Automated DCA strategies', included: true },
+      { text: 'Priority 24/7 support', included: true },
+      { text: 'White-glove onboarding', included: false }
     ]
   },
   {
@@ -121,13 +129,13 @@ const plans = [
     featured: false,
     cta: { label: 'Contact Sales', link: '#' },
     features: [
-      { text: 'Everything in Pro' },
-      { text: 'Dedicated account manager' },
-      { text: 'Custom integrations & APIs' },
-      { text: 'Multi-user team access' },
-      { text: 'SLA uptime guarantee' },
-      { text: 'Tax reporting suite' },
-      { text: 'White-glove onboarding' }
+      { text: 'Everything in Pro', included: true },
+      { text: 'Dedicated account manager', included: true },
+      { text: 'Custom integrations & APIs', included: true },
+      { text: 'Multi-user team access', included: true },
+      { text: 'SLA uptime guarantee', included: true },
+      { text: 'Tax reporting suite', included: true },
+      { text: 'White-glove onboarding', included: true }
     ]
   }
 ]
@@ -268,8 +276,46 @@ onMounted(() => {
   margin-bottom: 1.75rem;
 }
 
-.plan-features { list-style: none; display: flex; flex-direction: column; gap: 0.75rem; margin: 1.75rem 0; }
-.plan-features li { font-size: 0.88rem; color: var(--text-secondary); }
+/* Features List */
+.plan-features {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  margin: 1.75rem 0;
+}
+
+.plan-features li {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  font-size: 0.88rem;
+  color: var(--text-secondary);
+}
+
+.plan-features li.disabled {
+  color: var(--text-muted);
+  opacity: 0.5;
+}
+
+.feat-icon {
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  background: rgba(196,255,0,0.12);
+  color: var(--accent);
+  font-size: 0.65rem;
+  font-weight: 800;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.disabled .feat-icon {
+  background: rgba(255,255,255,0.05);
+  color: var(--text-muted);
+}
 
 .plan-cta {
   display: block;
