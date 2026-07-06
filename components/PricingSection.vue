@@ -35,8 +35,11 @@
           v-for="plan in plans"
           :key="plan.id"
           class="price-card glass-card reveal"
-          :class="`reveal-delay-${plan.id}`"
+          :class="[`reveal-delay-${plan.id}`, { 'price-card--featured': plan.featured }]"
         >
+          <!-- Popular Badge -->
+          <div v-if="plan.featured" class="featured-badge">Most Popular</div>
+
           <div class="plan-header">
             <div class="plan-icon" v-html="plan.icon"></div>
             <h3 class="plan-name">{{ plan.name }}</h3>
@@ -59,7 +62,7 @@
             </li>
           </ul>
 
-          <a :href="plan.cta.link" class="plan-cta btn-secondary">
+          <a :href="plan.cta.link" :class="['plan-cta', plan.featured ? 'btn-primary' : 'btn-secondary']">
             {{ plan.cta.label }}
           </a>
         </div>
@@ -81,6 +84,7 @@ const plans = [
     desc: 'Perfect for crypto beginners.',
     monthlyPrice: '0',
     annualPrice: '0',
+    featured: false,
     cta: { label: 'Start Free', link: '#' },
     features: [
       { text: 'Up to 3 crypto wallets' },
@@ -96,6 +100,7 @@ const plans = [
     desc: 'For active traders and investors.',
     monthlyPrice: '29',
     annualPrice: '23',
+    featured: true,
     cta: { label: 'Get Pro', link: '#' },
     features: [
       { text: 'Unlimited wallets' },
@@ -113,6 +118,7 @@ const plans = [
     desc: 'For funds, DAOs, and teams.',
     monthlyPrice: '99',
     annualPrice: '79',
+    featured: false,
     cta: { label: 'Contact Sales', link: '#' },
     features: [
       { text: 'Everything in Pro' },
@@ -191,13 +197,67 @@ onMounted(() => {
   margin-left: 0.35rem;
 }
 
-.pricing-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5rem; margin-bottom: 3rem; align-items: start; }
-.price-card { padding: 2.25rem; position: relative; }
+/* Grid */
+.pricing-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1.5rem;
+  margin-bottom: 3rem;
+  align-items: start;
+}
+
+/* Cards */
+.price-card {
+  padding: 2.25rem;
+  position: relative;
+  transition: all 0.4s ease;
+}
+
+.price-card--featured {
+  border-color: var(--border-accent);
+  background: linear-gradient(160deg, rgba(196,255,0,0.08) 0%, rgba(196,255,0,0.02) 100%);
+  box-shadow: 0 20px 60px rgba(196,255,0,0.12), 0 0 0 1px var(--border-accent);
+  transform: translateY(-8px);
+}
+
+.price-card--featured:hover { transform: translateY(-14px); }
+
+.price-card--featured::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 2px;
+  background: linear-gradient(90deg, transparent, var(--accent), transparent);
+}
+
+.featured-badge {
+  position: absolute;
+  top: -12px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: var(--accent);
+  color: var(--text-dark);
+  font-size: 0.72rem;
+  font-weight: 800;
+  padding: 4px 14px;
+  border-radius: var(--radius-full);
+  white-space: nowrap;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+
 .plan-icon { font-size: 2rem; margin-bottom: 1rem; }
 .plan-name { font-size: 1.3rem; font-weight: 800; margin-bottom: 0.35rem; }
 .plan-desc { font-size: 0.85rem; color: var(--text-muted); margin-bottom: 1.5rem; }
 .plan-header { margin-bottom: 1.25rem; }
-.plan-price { display: flex; align-items: flex-end; gap: 0.1rem; margin-bottom: 0.25rem; }
+
+.plan-price {
+  display: flex;
+  align-items: flex-end;
+  gap: 0.1rem;
+  margin-bottom: 0.25rem;
+}
+
 .price-currency { font-size: 1.25rem; font-weight: 700; color: var(--text-secondary); margin-bottom: 0.4rem; }
 .price-amount { font-size: 3rem; font-weight: 900; letter-spacing: -0.04em; line-height: 1; }
 .price-period { font-size: 0.85rem; color: var(--text-muted); margin-bottom: 0.5rem; }
@@ -210,6 +270,17 @@ onMounted(() => {
 
 .plan-features { list-style: none; display: flex; flex-direction: column; gap: 0.75rem; margin: 1.75rem 0; }
 .plan-features li { font-size: 0.88rem; color: var(--text-secondary); }
-.plan-cta { display: block; text-align: center; width: 100%; padding: 0.875rem; }
-@media (max-width: 1024px) { .pricing-grid { grid-template-columns: 1fr; max-width: 420px; margin: 0 auto 3rem; } }
+
+.plan-cta {
+  display: block;
+  text-align: center;
+  width: 100%;
+  padding: 0.875rem;
+}
+
+@media (max-width: 1024px) {
+  .pricing-grid { grid-template-columns: 1fr; max-width: 420px; margin: 0 auto 3rem; }
+  .price-card--featured { transform: none; }
+  .price-card--featured:hover { transform: translateY(-6px); }
+}
 </style>
