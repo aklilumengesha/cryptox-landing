@@ -1,6 +1,6 @@
-# Crypto Landing Page - Nuxt 3
+# CryptoX — Crypto Landing Page
 
-A modern, dark-themed cryptocurrency investing platform landing page built with Nuxt 3.
+A modern, dark-themed cryptocurrency investing platform landing page built with Nuxt 3 by **[Aklilu Mengesha](mailto:aklilumengesha57@gmail.com)**.
 
 ## Features
 
@@ -8,10 +8,14 @@ A modern, dark-themed cryptocurrency investing platform landing page built with 
 - 📱 Fully responsive design
 - ⚡ Smooth animations and transitions
 - 🎯 Modern UI components:
-  - Hero section with phone mockup
-  - Feature cards grid
-  - Chart visualization section
-  - Trust indicators and statistics
+  - Hero section with animated phone mockup
+  - Feature cards grid (3-column)
+  - Live chart & price visualization
+  - Pricing tiers with comparison table
+  - Testimonials carousel with 3D coverflow
+  - FAQ accordion with smooth transitions
+  - Call-to-action section with floating coin animations
+  - Full site footer with newsletter signup
 
 ## Tech Stack
 
@@ -54,11 +58,26 @@ npm run preview
 
 ```
 crypto-landing/
+├── components/
+│   ├── AppHeader.vue          # Sticky nav with mobile menu
+│   ├── HeroSection.vue        # Hero with animated phone mockup
+│   ├── FeaturesSection.vue    # 3-column feature cards grid
+│   ├── ChartSection.vue       # Price chart visualization
+│   ├── PricingSection.vue     # Tiered pricing cards
+│   ├── TestimonialsSection.vue# 3D coverflow carousel
+│   ├── FAQSection.vue         # Accordion with sidebar
+│   ├── CTASection.vue         # Call-to-action with coin deco
+│   └── AppFooter.vue          # Footer with newsletter
 ├── pages/
-│   └── index.vue          # Main landing page
-├── app.vue                # Root component
-├── nuxt.config.ts         # Nuxt configuration
-└── package.json           # Dependencies
+│   └── index.vue              # Main landing page
+├── assets/
+│   └── css/main.css           # Global design tokens & utilities
+├── public/
+│   ├── favicon.ico
+│   └── robots.txt
+├── app.vue                    # Root component
+├── nuxt.config.ts             # Nuxt configuration
+└── package.json               # Dependencies
 ```
 
 ## Customization
@@ -82,10 +101,14 @@ Edit `pages/index.vue` to update:
 
 ## Design Features
 
-- **Hero Section**: Large heading, user stats, info card, animated phone mockup
+- **Hero Section**: Large heading, live stats counter, animated phone mockup
 - **Features Grid**: 3-column grid with highlighted center card
-- **Chart Section**: Price display with visual chart placeholder
-- **Trust Section**: Platform highlights with CTA buttons
+- **Chart Section**: BTC/ETH price display with animated SVG chart
+- **Pricing Section**: Starter / Pro / Enterprise tiers with feature checklists
+- **Testimonials**: 3D coverflow carousel with auto-advance and dot indicators
+- **FAQ**: Accordion with left sidebar contact card
+- **CTA**: Full-width card with spinning rings and floating crypto coin icons
+- **Footer**: 5-column grid, social links, newsletter form, legal links
 - **Responsive**: Mobile-first design that adapts to all screen sizes
 
 ## License
@@ -93,5 +116,9 @@ Edit `pages/index.vue` to update:
 MIT
 
 ---
+
+## Author
+
+**Aklilu Mengesha** — [aklilumengesha57@gmail.com](mailto:aklilumengesha57@gmail.com)
 
 Built with ❤️ using Nuxt 3
