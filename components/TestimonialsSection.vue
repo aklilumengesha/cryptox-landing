@@ -45,6 +45,27 @@
             </div>
           </div>
         </div>
+
+        <!-- Controls -->
+        <div class="carousel-controls">
+          <button class="carousel-btn" @click="prev" aria-label="Previous testimonial">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M15 18l-6-6 6-6"/></svg>
+          </button>
+
+          <div class="carousel-dots">
+            <button
+              v-for="(_, i) in testimonials"
+              :key="i"
+              :class="['dot', { 'dot--active': i === activeIndex }]"
+              @click="activeIndex = i"
+              :aria-label="`Go to testimonial ${i + 1}`"
+            ></button>
+          </div>
+
+          <button class="carousel-btn" @click="next" aria-label="Next testimonial">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M9 18l6-6-6-6"/></svg>
+          </button>
+        </div>
       </div>
     </div>
   </section>
@@ -132,6 +153,7 @@ function getCardStyle(i) {
 }
 
 function next() { activeIndex.value = (activeIndex.value + 1) % testimonials.length }
+function prev() { activeIndex.value = (activeIndex.value - 1 + testimonials.length) % testimonials.length }
 
 let timer
 onMounted(() => {
@@ -237,6 +259,52 @@ onUnmounted(() => clearInterval(timer))
   font-weight: 700;
   display: flex;
   align-items: center;
+}
+
+/* Controls */
+.carousel-controls {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1.5rem;
+  margin-top: 1rem;
+}
+
+.carousel-btn {
+  width: 44px; height: 44px;
+  border-radius: 50%;
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  color: var(--text-secondary);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all var(--transition);
+}
+
+.carousel-btn:hover {
+  border-color: var(--border-accent);
+  color: var(--accent);
+  background: var(--accent-subtle);
+  transform: scale(1.05);
+}
+
+.carousel-dots { display: flex; gap: 0.6rem; }
+
+.dot {
+  width: 8px; height: 8px;
+  border-radius: 50%;
+  background: var(--border);
+  border: none;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.dot--active {
+  background: var(--accent);
+  width: 28px;
+  border-radius: var(--radius-full);
 }
 
 /* Responsive */
