@@ -44,7 +44,7 @@
 </template>
 
 <script setup>
-import { ref, onMounted } from 'vue'
+import { ref, onMounted, onUnmounted } from 'vue'
 
 const activeIndex = ref(0)
 
@@ -83,7 +83,12 @@ const testimonials = [
   }
 ]
 
+function next() { activeIndex.value = (activeIndex.value + 1) % testimonials.length }
+
+let timer
 onMounted(() => {
+  timer = setInterval(next, 6000)
+
   const els = document.querySelectorAll('.reveal')
   const obs = new IntersectionObserver(
     es => es.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible') }),
@@ -91,6 +96,7 @@ onMounted(() => {
   )
   els.forEach(el => obs.observe(el))
 })
+onUnmounted(() => clearInterval(timer))
 </script>
 
 <style scoped>
