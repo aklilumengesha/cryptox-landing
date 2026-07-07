@@ -2,7 +2,7 @@
   <section id="faq" class="faq section-py">
     <div class="container">
       <div class="faq-inner">
-        <!-- Left Sidebar -->
+        <!-- Left -->
         <div class="faq-left">
           <div class="section-badge reveal">
             <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>
@@ -20,7 +20,7 @@
           </a>
         </div>
 
-        <!-- Accordion -->
+        <!-- Right: Accordion -->
         <div class="faq-list">
           <div
             v-for="(item, i) in faqs"
@@ -28,7 +28,13 @@
             class="faq-item reveal"
             :class="`reveal-delay-${i + 1}`"
           >
-            <button class="faq-question" @click="toggle(item.id)">
+            <button
+              class="faq-question"
+              @click="toggle(item.id)"
+              :aria-expanded="openId === item.id"
+              :id="`faq-btn-${item.id}`"
+              :aria-controls="`faq-panel-${item.id}`"
+            >
               <span>{{ item.question }}</span>
               <div class="faq-chevron" :class="{ open: openId === item.id }">
                 <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M6 9l6 6 6-6"/></svg>
@@ -36,7 +42,13 @@
             </button>
 
             <Transition name="accordion">
-              <div v-if="openId === item.id" class="faq-answer">
+              <div
+                v-if="openId === item.id"
+                class="faq-answer"
+                :id="`faq-panel-${item.id}`"
+                role="region"
+                :aria-labelledby="`faq-btn-${item.id}`"
+              >
                 <p>{{ item.answer }}</p>
               </div>
             </Transition>
